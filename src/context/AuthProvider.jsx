@@ -57,7 +57,7 @@ export const AuthProvider = ({children}) => {
       } catch (error) {
           console.log(error)
         setAlert({
-          msg: 'Hola',
+          msg: 'Wrong email or password',
           error: true
         })
       }    
