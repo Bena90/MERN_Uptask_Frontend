@@ -36,10 +36,19 @@ export const ProjectsProvider = ({children}) => {
   useEffect(()=>{
     setLoading(true)
     const getProjects = async () =>{
-      if (!auth.token) return;
 
       try {
-        const {data} = await axiosClient('projects', config);
+        const token = localStorage.getItem('token')
+        if(!token) return
+
+        const config1 = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+          }
+        };
+
+        const {data} = await axiosClient('projects', config1);
         setProjects(data);
 
       } catch (error) {
